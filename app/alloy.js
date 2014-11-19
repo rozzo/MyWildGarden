@@ -9,3 +9,14 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
+(function() {
+	//app properties
+	Ti.Filesystem.remoteBackup = false;
+	Ti.Database.remoteBackup = false;
+	
+	//bootstrap the database
+	var db = Ti.Database.open('MWG');
+	db.execute('CREATE TABLE IF NOT EXISTS locations(id INTEGER PRIMARY KEY, name TEXT, plant TEXT, latitude REAL, longitude REAL, createDate TEXT, lastUpdateDate TEXT);');
+	db.close();
+})();
+
